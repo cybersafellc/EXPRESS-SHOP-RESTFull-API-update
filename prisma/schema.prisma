@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id Int @id
+  username String
+  password String
+  status_account String
+}
+
+model device {
+  id Int @id
+  user_id Int
+  user_agent String
+}
+
+model admin {
+  id Int @id
+  username String
+  password String
+}
+
+model product {
+  id Int @id
+  name String
+  stocks Int
+  price Int
+  description String
+  sold Int
+  rating Int
+  img_url String
+}
+
+model address {
+  id Int @id
+  user_id Int
+  name String
+  address_1 String
+  suite String
+  city String
+  state String
+  country String
+  phone_number String
+  zip_code String
+}
+
+model cart {
+  id Int @id
+  user_id Int
+  product_id Int
+  qty Int
+}
+
+model orders {
+  order_id String @id
+  user_id Int
+  total_product Int
+  total_amount Int
+  status_order String
+  address_id Int
+}
+
+model transaction {
+  id Int @id
+  order_id String
+  product_id Int
+  qty Int
+  price_product Int
+  total_amount Int
+}
+
+model canceled_transaction {
+  id Int @id
+  order_id String
+  product_id Int
+  qty Int
+  price_product Int
+  total_amount Int
+}
