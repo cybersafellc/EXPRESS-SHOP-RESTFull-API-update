@@ -19,8 +19,8 @@ const create = async (requestUsers, requestDevice) => {
   });
   if (count) throw new ResponseError(400, "username already exist");
 
-  result.status_account = "active";
-  result.id = await new GenereteID(prismaClient.user).run();
+  result.status_account = await "active";
+  result.id = await new GenereteID(prismaClient.user).genereteUserId();
   result.password = await bcrypt.hash(result.password, 10);
   const resultCreate = await prismaClient.user.create({
     data: result,
@@ -233,4 +233,15 @@ const newPassword = async (request) => {
   }
 };
 
-export default { create, login, refreshToken, resetPassword, newPassword };
+const resePasswordToken = async (req, res, next) => {
+  return await new Response(200, "token verified", null, null, false);
+};
+
+export default {
+  create,
+  login,
+  refreshToken,
+  resetPassword,
+  newPassword,
+  resePasswordToken,
+};

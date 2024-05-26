@@ -52,10 +52,20 @@ const newPassword = async (req, res, next) => {
   }
 };
 
+const resePasswordToken = async (req, res, next) => {
+  try {
+    const result = await userService.resePasswordToken();
+    res.status(200).json(result).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   create,
   login,
   refreshToken,
   resetPassword,
   newPassword,
+  resePasswordToken,
 };

@@ -72,4 +72,31 @@ const adminRefreshToken = async (req, res, next) => {
   }
 };
 
-export default { user, admin, userRefreshToken, adminRefreshToken };
+const resePasswordToken = async (req, res, next) => {
+  try {
+    const reset_password_token = await req.headers["authorization"]?.split(
+      " "
+    )[1];
+
+    if (!reset_password_token)
+      throw new ResponseError(400, "reset_password_token required");
+    await Jwt.verify(
+      reset_password_token,
+      process.env.USER_RESET_PASSWORD,
+      (err, decode) => {
+        if (err) throw new ResponseError(400, "reset_password_token invalid");
+        next();
+      }
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default {
+  user,
+  admin,
+  userRefreshToken,
+  adminRefreshToken,
+  resePasswordToken,
+};

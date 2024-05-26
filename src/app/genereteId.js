@@ -1,3 +1,5 @@
+import crypto from "crypto";
+
 class GenereteID {
   constructor(prismaClient) {
     this.prismaClient = prismaClient;
@@ -31,30 +33,14 @@ class GenereteID {
   }
 
   async orderId() {
-    const { prismaClient } = this;
-    const datas = await prismaClient.findMany();
-    const TempId = datas.length + 1;
-    const count = await prismaClient.count({
-      where: {
-        order_id: `ORDER-839430${TempId}-08237`,
-      },
-    });
+    const id = await crypto.randomInt(1000, 99999999);
+    const date =
+      await `${new Date().getTime()}-${new Date().getDate()}${new Date().getMonth()}${new Date().getFullYear()}`;
+    return await `${date}-${id}`;
+  }
 
-    if (!count) {
-      return `ORDER-839430${TempId}-08237`;
-    } else {
-      for (let i = 0; i < datas.length; i++) {
-        const count = await prismaClient.count({
-          where: {
-            order_id: `ORDER-839430${TempId}-08237`,
-          },
-        });
-
-        if (!count) {
-          return await `ORDER-839430${i + 1}-08237`;
-        }
-      }
-    }
+  async genereteUserId() {
+    return await crypto.randomUUID();
   }
 }
 

@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 const create = Joi.object({
-  user_id: Joi.number().required(),
+  user_id: Joi.string().required(),
   name: Joi.string().required(),
   address_1: Joi.string().required(),
   suite: Joi.string().required(),
@@ -13,16 +13,16 @@ const create = Joi.object({
 });
 
 const get = Joi.object({
-  user_id: Joi.number().required(),
+  user_id: Joi.string().required(),
 });
 
 const getById = Joi.object({
-  user_id: Joi.number().required(),
+  user_id: Joi.string().required(),
   id: Joi.number().required(),
 });
 
 const updates = Joi.object({
-  user_id: Joi.number().required(),
+  user_id: Joi.string().required(),
   id: Joi.number().required(),
   name: Joi.string().optional(),
   address_1: Joi.string().optional(),
@@ -36,7 +36,7 @@ const updates = Joi.object({
 
 const deletes = Joi.object({
   id: Joi.number().required(),
-  user_id: Joi.number().required(),
+  user_id: Joi.string().required(),
 });
 
 export default { create, get, getById, updates, deletes };

@@ -10,7 +10,7 @@ const refreshToken = Joi.object({
 });
 
 const lockedUsers = Joi.object({
-  user_id: Joi.number().required(),
+  user_id: Joi.string().required(),
   status: Joi.boolean().required(),
 });
 

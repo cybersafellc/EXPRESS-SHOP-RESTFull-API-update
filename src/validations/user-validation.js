@@ -16,7 +16,7 @@ const login = Joi.object({
 });
 
 const refreshToken = Joi.object({
-  user_id: Joi.number().required(),
+  user_id: Joi.string().required(),
 });
 
 const resetPassword = Joi.object({

@@ -14,7 +14,7 @@ datasource db {
 }
 
 model user {
-  id Int @id
+  id String @id
   username String
   password String
   status_account String
@@ -22,7 +22,7 @@ model user {
 
 model device {
   id Int @id
-  user_id Int
+  user_id String
   user_agent String
 }
 
@@ -45,7 +45,7 @@ model product {
 
 model address {
   id Int @id
-  user_id Int
+  user_id String
   name String
   address_1 String
   suite String
@@ -58,14 +58,14 @@ model address {
 
 model cart {
   id Int @id
-  user_id Int
+  user_id String
   product_id Int
   qty Int
 }
 
 model orders {
   order_id String @id
-  user_id Int
+  user_id String
   total_product Int
   total_amount Int
   status_order String

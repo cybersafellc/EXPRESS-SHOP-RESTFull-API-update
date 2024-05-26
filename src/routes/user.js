@@ -16,6 +16,12 @@ router.post(
   authMiddleware.userRefreshToken,
   userController.refreshToken
 );
+router.get(
+  "/users/verify-token/reset-password",
+  authMiddleware.resePasswordToken,
+  userController.resePasswordToken
+);
+
 router.get("/users/verify-token", authMiddleware.user, accessTokenVerify);
 router.post("/address", authMiddleware.user, addressController.create);
 router.get("/address", authMiddleware.user, addressController.get);

@@ -44,7 +44,7 @@ class sendEmail {
       .container {
         width: 100%;
         padding: 50px 0px;
-        background-color: rgb(255, 106, 0);
+        background-color: #2D2D2D;
         margin: auto;
         border-radius:10px;
       }
@@ -107,7 +107,7 @@ class sendEmail {
         >
           To update your password
         </p>
-        <a href="${link}">http://localhost:5100/reset-password/new-password?token=${link}</a>
+        <a href="http://localhost:3000/users/reset-password/new-password/${link}">https://6941-2001-448a-1082-f73-5596-971-6bba-8e86.ngrok-free.app/users/reset-password/new-password/${link}</a>
         <p
           style="
             font-size: 12px;
@@ -141,7 +141,7 @@ class sendEmail {
     const transporter = await this.__transporter__;
     try {
       await transporter.sendMail({
-        from: `"Express Shop Support" <rusnandapurnama1@outlook.com>`, // sender address
+        from: `"Express Shop Support" <${process.env.APP_SMTP_EMAIL}>`, // sender address
         to: email, // list of receivers
         subject: `Unusual Activity - Your account has been locked`, // Subject line
         html: `
@@ -168,7 +168,7 @@ class sendEmail {
       .container {
         width: 100%;
         padding: 50px 0px;
-        background-color: rgb(255, 106, 0);
+        background-color: #2D2D2D;
         margin: auto;
         border-radius:10px;
       }
